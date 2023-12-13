@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import sys
 
 cube_max_count = {
     'red': 12,
@@ -17,8 +18,8 @@ def check_excess(color: str, count: int):
 color_re = '|'.join(cube_max_count.keys())
 cube_re = rf'([0-9]+) ({color_re})'
 
-def main():
-    with open('./game-recordings.txt') as file:
+def main(input_file):
+    with open(input_file) as file:
         lines = file.readlines()
     res = 0
     for l in lines:
@@ -34,4 +35,9 @@ def main():
     print(f'The sum of IDs of possible games is {res}')
 
 if __name__ == '__main__':
-    main()
+    try:
+        input_file = sys.argv[1]
+    except IndexError:
+        input_file = 'input.txt'
+
+    main(input_file)

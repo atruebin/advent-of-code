@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import sys
 
 num_re = r'[0-9]+'
 sym_re = r'[^.0-9\n]+'
@@ -43,8 +44,8 @@ def get_part_nums_sum(numbers, symbols):
 
     return res
 
-def main():
-    with open('./engine-schematic.txt') as file:
+def main(input_file):
+    with open(input_file) as file:
         lines = file.readlines()
 
     nums, syms = parse_lines(lines)
@@ -53,4 +54,9 @@ def main():
     print(f'The sum part numbers is {res}')
 
 if __name__ == '__main__':
-    main()
+    try:
+        input_file = sys.argv[1]
+    except IndexError:
+        input_file = 'input.txt'
+
+    main(input_file)

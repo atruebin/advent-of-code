@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import re
+import sys
 
-def main():
-    with open('./calibration-document.txt') as file:
+def main(input_file):
+    with open(input_file) as file:
         lines = file.readlines()
     res = 0
     for l in lines:
@@ -13,4 +14,9 @@ def main():
     print(f'The sum of all of the calibration values is {res}')
 
 if __name__ == '__main__':
-    main()
+    try:
+        input_file = sys.argv[1]
+    except IndexError:
+        input_file = 'input.txt'
+
+    main(input_file)
